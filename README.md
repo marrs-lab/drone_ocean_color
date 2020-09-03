@@ -20,4 +20,6 @@ Basic glint removal is:
 
 `Lw(θ,φ,λ) = LT(θ,φ,λ) - ρ(θ,φ,θ0,W) * Li(θ’,φ,λ,)`
 
+![Ocean Color Workflow](https://github.com/patrickcgray/ocean_color/blob/master/basic_ocean_color_setup.png?raw=true "Ocean Color Workflow")
+
 
