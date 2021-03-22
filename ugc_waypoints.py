@@ -106,16 +106,6 @@ with open(filename, 'w') as the_file:
 	idx = 0
 	current_wp = 1
 	for coord in coords:
-	    the_file.write(str(idx)+'\t'+str(current_wp)+'\t0\t0\t0\t0\t0\t0\t'+str(coord[0])+'\t'+str(coord[1])+'\t'+str(altitude)+'\t1\n')
+	    the_file.write(str(idx)+'\t'+str(current_wp)+'\t0\t16\t0\t0\t0\t0\t'+str(coord[0])+'\t'+str(coord[1])+'\t'+str(altitude)+'\t1\n')
 	    idx += 1
 	    current_wp=0
-#<INDEX> <CURRENT WP> <COORD FRAME> <COMMAND> <PARAM1> <PARAM2> <PARAM3> <PARAM4> <PARAM5/X/LATITUDE> <PARAM6/Y/LONGITUDE> <PARAM7/Z/ALTITUDE> <AUTOCONTINUE>
-#0    	1    		 0    		   16    	 0.14999  0    	   0    	0    	 8.548    			 47.3759    		  550    			  1
-
-
-
-
-
-
-
-
