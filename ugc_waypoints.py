@@ -80,16 +80,16 @@ legs_traveled = 0
 
 while ship_dist < dist_per_flight:	
 	lat2, lon2 = get_new_pt(current_lat, current_lon, uas_leg_dist, ship_bearing+uas_bearing_offset)
-	coords.append([lat2,lat2])
+	coords.append([lat2,lon2])
 
 	lat3, lon3 = get_new_pt(lat2,lon2, uas_leg_dist, ship_bearing-uas_bearing_offset)
-	coords.append([lat3,lat3])
+	coords.append([lat3,lon3])
 
 	lat4, lon4 = get_new_pt(lat3,lon3, uas_leg_dist, ship_bearing-uas_bearing_offset)
-	coords.append([lat4,lat4])
+	coords.append([lat4,lon4])
 
 	lat5, lon5 = get_new_pt(lat4, lon4, uas_leg_dist, ship_bearing+uas_bearing_offset)
-	coords.append([lat5,lat5])
+	coords.append([lat5,lon5])
 
 	current_lat = lat5
 	current_lon = lon5
