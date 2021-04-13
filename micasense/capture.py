@@ -282,6 +282,8 @@ class Capture(object):
         if reflectances == None:
             reflectances = [panel.reflectance_from_panel_serial() for panel in self.panels]
         if len(reflectances) != len(self.panels):
+            print('panels: ',len(self.panels))
+            print('reflectances: ',len(reflectances))
             raise ValueError("Length of panel reflectances must match lengh of images")
         irradiance_list = []
         for i,p in enumerate(self.panels):

@@ -1,0 +1,37 @@
+name: micasense_ocean_color
+channels:
+  - conda-forge
+dependencies:
+  - python=3.7
+  - opencv=4.1
+  - rasterio
+  - geopandas
+  - cartopy
+  - numpy
+  - jupyter
+  - matplotlib
+  - pysolar
+  - gdal
+  - scikit-image
+  - pytest
+  - git
+  - git-lfs
+  - pandas
+  - imageio
+  - nb_conda
+  - descartes
+  - requests
+  - packaging
+  - pip
+  - pytest-xdist
+  - pip:
+    - pyzbar
+    - mapboxgl
+    - nc-time-axis
+    - jenkspy
+    - rawpy
+    - gpsphoto
+    - ExifRead
+    - piexif
+    - cameratransform
+    - git+https://github.com/smarnach/pyexiftool.git#egg=PyExifTool
