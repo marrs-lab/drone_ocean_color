@@ -405,7 +405,7 @@ def remove_bright_pix(im, lowest_percent=0.75, band=0):
     return(dark_pix)
 
 
-def visualize_darkest_pixels(im, lowest_percent=0.5, band=0, max_clim=0.1, only_img=False):
+def visualize_darkest_pixels(im, lowest_percent=0.5, band=0, max_clim=0.1, min_clim=0, only_img=False):
     if im.shape[0] == 6: # because these are altum images
         im_flat = im[:-1].reshape(5,-1)
     else:
@@ -420,7 +420,7 @@ def visualize_darkest_pixels(im, lowest_percent=0.5, band=0, max_clim=0.1, only_
     
     fig, ax = plt.subplots(1,5, figsize=(16,14))
     for i,a in enumerate(ax):
-        ims = a.imshow(im[i], cmap='jet', interpolation='none', vmax=max_clim, vmin=0)
+        ims = a.imshow(im[i], cmap='jet', interpolation='none', vmax=max_clim, vmin=min_clim)
         a.set_title(band_names[i])
         fig.colorbar(ims, ax=a, fraction=0.046, pad=0.04)
         a.set_xticks([])
@@ -441,7 +441,7 @@ def visualize_darkest_pixels(im, lowest_percent=0.5, band=0, max_clim=0.1, only_
 
         fig, ax = plt.subplots(1,5, figsize=(16,14))
         for i,a in enumerate(ax):
-            ims = a.imshow(dark_pix[i].reshape(im.shape[1:3]), interpolation='none', cmap='jet', vmax=max_clim, vmin=0)
+            ims = a.imshow(dark_pix[i].reshape(im.shape[1:3]), interpolation='none', cmap='jet', vmax=max_clim, vmin=min_clim)
             a.set_title(band_names[i])
             fig.colorbar(ims, ax=a, fraction=0.046, pad=0.04)
             a.set_xticks([])
@@ -675,7 +675,7 @@ def apply_rho(sea_img, sky_img, rho, visualize=True):
     if visualize:
         fig, ax = plt.subplots(5,5, figsize=(18,16))
         for i in range(5):
-            im = ax[0,i].imshow(sea_img[i],cmap='jet', vmin=0.001, vmax=.04)
+            im = ax[0,i].imshow(sea_img[i],cmap='jet', vmin=0.001, vmax=.06)
             fig.colorbar(im, ax=ax[0,i], fraction=0.046, pad=0.04)
             ax[0,i].set_xticks([])
             ax[0,i].set_yticks([])
@@ -700,7 +700,7 @@ def apply_rho(sea_img, sky_img, rho, visualize=True):
             ax[3,i].set_yticks([])
             ax[3,i].set_title('rho_resized * lsky_smooth')
 
-            im = ax[4,i].imshow(lw_img[i],cmap='jet', vmin=0.001, vmax=.03)
+            im = ax[4,i].imshow(lw_img[i],cmap='jet', vmin=0.005, vmax=.05)
             fig.colorbar(im, ax=ax[4,i], fraction=0.046, pad=0.04)
             ax[4,i].set_xticks([])
             ax[4,i].set_yticks([])
