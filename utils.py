@@ -604,7 +604,7 @@ def calculate_rho(sea_imgs, sky_imgs, blocked_spec, visualize=True):
     # note the smoothing process is quite slow and takes a while if you have too many images
     Lt_smooth_imgs = []
     for i in range(sea_imgs.shape[0]):
-        Lt_smooth = ndimage.gaussian_filter(sea_imgs[i], sigma=(0, 60, 60), order=0)
+        Lt_smooth = ndimage.gaussian_filter(sea_imgs[i], sigma=(0, 20, 20), order=0)
         Lt_smooth_imgs.append(Lt_smooth)
     print(np.array(Lt_smooth_imgs).shape)
     Lt_smooth = np.mean(np.array(Lt_smooth_imgs), axis=0)
