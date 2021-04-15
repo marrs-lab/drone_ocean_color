@@ -34,7 +34,7 @@ def spacetotopdown(top_im, cam, image_size, scaling):
     #return([x1,x2,x3,x4],[y1, y2, y3,y4])
 
 def georegister_drone_imgs(path_name, new_name, im, lat, lon, alt, yaw, roll, pitch, focal_length, 
-                           sensor_size, image_size, scaling=0.2, top_im_size=120, visualize=True):
+                           sensor_size, image_size, scaling=0.2, top_im_bounds=[-120,120,-120,120], visualize=True):
     cam = ct.Camera(
         ct.RectilinearProjection(focallength_mm=focal_length,
                 sensor=sensor_size,
@@ -52,9 +52,10 @@ def georegister_drone_imgs(path_name, new_name, im, lat, lon, alt, yaw, roll, pi
     #im = plt.imread(path_name)
     # this value is approximate and based on altitude, FOV, and viewing geometry
     print(scaling)
-    top_im = cam.getTopViewOfImage(im, [-top_im_size, top_im_size,-top_im_size, top_im_size], scaling=scaling, do_plot=False)
+    top_im = cam.getTopViewOfImage(im, top_im_bounds, scaling=scaling, do_plot=False)
     
     image_coords = spacetotopdown(top_im, cam, image_size, scaling)
+    print('img coords: ',image_coords)
     
     if visualize:
         fig,ax = plt.subplots(figsize=(9,9))
@@ -125,7 +126,7 @@ def format_alta_logs(fp):
 
 # TODO change it to this
 # alta_micasense_georef(img_info_path_name, data_path_name, alta_logs, scaling=0.1, top_im_size=120):
-def alta_micasense_georef(img_info_path_name, new_name, img_data, alta_logs, scaling, top_im_size=120, visualize=True):
+def alta_micasense_georef(img_info_path_name, new_name, img_data, alta_logs, scaling, top_im_bounds=[-120,-120,-120,120], visualize=True):
     # open up the micasense camera object
     img = image.Image(img_info_path_name)
     
@@ -148,5 +149,5 @@ def alta_micasense_georef(img_info_path_name, new_name, img_data, alta_logs, sca
     
     
     if georegister_drone_imgs(img_info_path_name, new_name, img_data, lat, lon, alt, yaw, roll, pitch, f, 
-                           sensor_size, image_size, scaling=scaling, top_im_size=top_im_size, visualize=visualize):
+                           sensor_size, image_size, scaling=scaling, top_im_bounds=top_im_bounds, visualize=visualize):
         print('Complete!')
