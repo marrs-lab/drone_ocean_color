@@ -56,9 +56,9 @@ def get_warp_matrix(img_capture, max_alignment_iterations = 50):
     # TODO does this need img_type???
     # TODO ensure this is good for the Altum
     ## Alignment settings
-    match_index = 2 # Index of the band 
+    match_index = 0 # Index of the band 
     warp_mode = cv2.MOTION_HOMOGRAPHY # MOTION_HOMOGRAPHY or MOTION_AFFINE. For Altum images only use HOMOGRAPHY
-    pyramid_levels = 0 # for images with RigRelatives, setting this to 0 or 1 may improve alignment
+    pyramid_levels = 1 # for images with RigRelatives, setting this to 0 or 1 may improve alignment
     print("Aligning images. Depending on settings this can take from a few seconds to many minutes")
     # Can potentially increase max_iterations for better results, but longer runtimes
     warp_matrices, alignment_pairs = imageutils.align_capture(img_capture,
@@ -330,6 +330,7 @@ def retrieve_imgs_and_metadata(img_dir, count=10000, start=0, altitude_cutoff = 
 # many of these fcns are no longer used since they were based on a simple darkness proportion
 
 def brightest_tube_pix(img, percent=0.0001):
+    # this finds the brightest N% of pixels in each band
     brightest = []
     for band in range(0,5):
         flat_img = img[band].flatten()

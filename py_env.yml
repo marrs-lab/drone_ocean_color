@@ -20,6 +20,7 @@ dependencies:
   - imageio
   - nb_conda
   - descartes
+  - contextily
   - requests
   - packaging
   - pip
