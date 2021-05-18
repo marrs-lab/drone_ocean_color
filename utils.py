@@ -313,7 +313,7 @@ def retrieve_imgs_and_metadata(img_dir, count=10000, start=0, altitude_cutoff = 
     imgs = np.array(imgs) / 32768 # this corrects it back to reflectance
     # TODO confirm with Anna that this is appropriate
     img = imgs / math.pi # this corrects from reflectance to remote sensing reflectance
-    print('Output shape is: ', imgs.shape)
+    #print('Output shape is: ', imgs.shape)
 
     # give the metadata the index of each image it is connected to so that I can sort them later and still
     # pull out ids to visualize from imgs
@@ -539,6 +539,7 @@ def convert_to_ocean_color_gdf(chla_list, spectra_list, img_metadata):
 
 def vec_chla_img(blue, green):
     # this is a more efficient chla algorithm vectorized for numpy arrays
+    # current coefficients are based on L8 OC2
     a0 = 0.1977
     a1 = -1.8117
     a2 = 1.9743
