@@ -432,7 +432,7 @@ def visualize_darkest_pixels(im, lowest_percent=0.5, band=0, max_clim=0.1, min_c
 #     ax[5].set_yticks([])
 #     fig.colorbar(ims, ax=ax[5], fraction=0.046, pad=0.04)
     #plt.savefig('openoceanfull.png')
-    fig.show()
+    plt.show()
         
     if not only_img:
         
