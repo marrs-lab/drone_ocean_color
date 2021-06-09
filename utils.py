@@ -312,7 +312,7 @@ def retrieve_imgs_and_metadata(img_dir, count=10000, start=0, altitude_cutoff = 
     imgs = load_images([img_metadata[i]['full_filename'] for i in idxs])
     imgs = np.array(imgs) / 32768 # this corrects it back to reflectance
     # TODO confirm with Anna that this is appropriate
-    img = imgs / math.pi # this corrects from reflectance to remote sensing reflectance
+    imgs = imgs / math.pi # this corrects from reflectance to remote sensing reflectance
     #print('Output shape is: ', imgs.shape)
 
     # give the metadata the index of each image it is connected to so that I can sort them later and still
