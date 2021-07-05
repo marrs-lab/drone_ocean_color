@@ -167,6 +167,9 @@ def save_images(img_set, outputPath, thumbnailPath, panel_irradiance, warp_img_c
         fullThumbnailPath= os.path.join(thumbnailPath, thumbnailFilename)
         if (not os.path.exists(fullOutputPath)) or overwrite:
             if(len(capture.images) == len(img_set.captures[0].images)):
+                #TODO make this pull in automatically
+                # this is a correction factor
+                #irradiance = capture.dls_irradiance() * np.array([0.521835  , 0.56514118, 0.59965098, 0.58979034, 0.59371461, 0])
                 capture.compute_undistorted_reflectance(irradiance_list=irradiance,force_recompute=True)
                 capture.create_aligned_capture(irradiance_list=irradiance, warp_matrices=warp_matrices)
                 capture.save_capture_as_stack(fullOutputPath, sort_by_wavelength=True)
@@ -312,7 +315,7 @@ def retrieve_imgs_and_metadata(img_dir, count=10000, start=0, altitude_cutoff = 
     imgs = load_images([img_metadata[i]['full_filename'] for i in idxs])
     imgs = np.array(imgs) / 32768 # this corrects it back to reflectance
     # TODO confirm with Anna that this is appropriate
-    img = imgs / math.pi # this corrects from reflectance to remote sensing reflectance
+    imgs = imgs / math.pi # this corrects from reflectance to remote sensing reflectance
     #print('Output shape is: ', imgs.shape)
 
     # give the metadata the index of each image it is connected to so that I can sort them later and still
