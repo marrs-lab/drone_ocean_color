@@ -121,6 +121,7 @@ def format_alta_logs(fp):
     alta_logs['id'] = alta_logs.index
     alta_logs['dt'] = pd.to_datetime(alta_logs.Date.apply(str)+alta_logs['GPS Time']+'.'+alta_logs.id.apply(str).str.zfill(9).apply(str).str.slice(start=3,stop=9), format='%Y%m%d%H:%M:%S.%f')
     alta_logs = alta_logs.set_index('dt')
+    alta_logs = alta_logs.sort_index()
     return(alta_logs)
 
 
