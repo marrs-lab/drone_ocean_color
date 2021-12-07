@@ -469,6 +469,24 @@ def visualize_darkest_pixels(im, lowest_percent=0.5, band=0, max_clim=0.1, min_c
 
 ############ chla retrieval algorithms ############
 
+ci1 = -0.49
+ci2 = 191.6590
+
+# ci1 = -0.38152295986028695
+# ci2 = 271.37634868
+
+# average of 443*.5 + 489*1.5
+# ci1 = -0.30002281538304754
+# ci2 = 310.5772338
+
+# ci1 = -0.21380600002416383
+# ci2 = 572.01573044
+
+def oc_index(blue, green, red):
+    CI = green - ( blue + (555 - 477)/(667 - 477) * (red - blue) )
+    ChlCI = 10**(ci1 + ci2*CI)
+    return(ChlCI)
+
 def L2chlor_a(Rrs443, Rrs488, Rrs547, Rrs555, Rrs667):
     ''' Use weighted MODIS Aqua bands to calculate chlorophyll concentration
     using oc3m blended algorithm with CI (Hu et al. 2012) '''
