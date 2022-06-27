@@ -1,25 +1,11 @@
-# ocean_color
-Retrieving ocean color from drone-based sensors
+# Robust ocean color from drones
 
-Process:
+#### This repository contains all the code for the the paper "Robust ocean color from drones: viewing geometry, sky reflection removal, uncertainty analysis, and a survey of the Gulf Stream front" in Limnology and Oceanography: Methods
 
-1. Measure LT, Li, and Ed
-2. Filter out bad angles, times with variable cloud cover, high wind, etc
-3. Correct sensor measurements to radiances
-4. Correct image distortion from angle off nadir to correct geospatial footprint
-5. Filter out bright outliers (specular reflection, white caps, etc)
-    * Potentially only use the darkest ~10% of pixels
-6. Normalize all spectra to reference Ed (downwelling irradiance)
-7. Remove surface glint to get Lw
-    * Simple version is just Mobley 1999
-    * Simpler version if Mobley 1999 plus Ruddick 2006 residual correction
-    * Regardless needs to be pixel based
-    * *Best option is spectral glint correction per pixel
+Authors: Patrick Clifton Gray, Anna E. Windle, Julian Dale, Ivan B. Savelyev, Zackary I. Johnson, Greg M. Silsbe, Gregory D. Larsen, David W. Johnston
 
-Basic glint removal is:
+#### Abstract:
 
-`Lw(θ,φ,λ) = LT(θ,φ,λ) - ρ(θ,φ,θ0,W) * Li(θ’,φ,λ,)`
+Accurate and robust retrieval of ocean color from remote sensing enables critical observations of aquatic natural systems, from open ocean biological oceanography, coastal biodiversity, and water quality for human health. In the last decade, studies have increasingly highlighted the important role of fine-scale processes in coastal and marine ecology and biogeochemistry, but observation and modeling at these scales remains technologically limited. Unoccupied aircraft systems (UAS, aka drones) can rapidly sample large areas with high spatial and temporal resolution; but the challenge of accurately retrieving ocean color, particularly with common wide field-of-view multispectral imagers, has limited the adoption of this technology. As UAS endurance, autonomy, and sensor capabilities continue to increase, so does this technology’s potential to observe the ocean at submesoscales, but only if proper protocols are followed. The present study provides a guide for achieving (1) ideal viewing geometry of UAS-borne ocean color sensors, (2) techniques for the removal of sun glint and reflected skylight to derive water-leaving radiances, (3) characterization of uncertainty in these measurements, and (4) converting water-leaving radiances to remote sensing reflectance for analytic end products such as chlorophyll-a estimates. Documented open-source code facilitates replication of this emerging technique. Using this methodology we briefly describing fine-scale variability of the Gulf Stream front off North Carolina alongside synoptic satellite data and in situ measurements for comparison. These results demonstrate how UAS-based ocean color measurements complement and enhance conventional ocean observations and modeling to resolve fine-scale variability and close the lacuna between satellite and in situ methods. 
 
-![Ocean Color Workflow](https://github.com/patrickcgray/ocean_color/blob/master/basic_ocean_color_setup.png?raw=true "Ocean Color Workflow")
-
-
+![uas_ocean_color_viewing_geometry_uas_paper_revision1](https://user-images.githubusercontent.com/2497349/175997951-0b55418b-400c-4749-99ba-30c15b1337c2.png)
